@@ -8,12 +8,14 @@ RUN subscription-manager register --org=$RHEL8_ORG --activationkey=$RHEL8_ACTIVA
 
 # Install tools
 #
+# clang-tools-extra for clang-format
 # gcc-toolset-13 compiler
 # vim-enhanced for color vi support in git
 # zip/unzip for vcpkg
 #
 RUN dnf update -y \
   && dnf -y install \
+  clang-tools-extra \
   gcc-toolset-13 \
   git \
   unzip \
