@@ -1,0 +1,158 @@
+{
+  "version": 7,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 1
+  },
+  "configurePresets": [
+    {
+      "name": "cmake-logging",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_MESSAGE_CONTEXT_SHOW": true,
+        "CMAKE_MESSAGE_LOG_LEVEL": "NOTICE"
+      }
+    },
+    {
+      "name": "vcpkg-debug",
+      "hidden": true,
+      "cacheVariables": {
+        "VCPKG_INSTALL_OPTIONS": "--debug"
+      }
+    },
+    {
+      "name": "common",
+      "hidden": true,
+      "inherits": "cmake-logging",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/build/${presetName}/install",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_MODULE_PATH": "$env{CMAKE_MODULE_PATH};${sourceDir}/tools/cmake"
+      },
+      "warnings": {
+        "dev": true,
+        "deprecated": true,
+        "uninitialized": true
+      }
+    },
+    {
+      "name": "x64-linux",
+      "hidden": true,
+      "description": "x64 linux vcpkg build",
+      "inherits": "common",
+      "toolchainFile": "/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    },
+    {
+      "name": "debug",
+      "hidden": true,
+      "description": "debug mode build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "description": "release mode build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "gcc",
+      "hidden": true,
+      "description": "gcc toolset 13 compiler",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "/opt/rh/gcc-toolset-13/root/usr/bin/g++",
+        "CMAKE_C_COMPILER": "/opt/rh/gcc-toolset-13/root/usr/bin/gcc"
+      }
+    },
+    {
+      "name": "clang",
+      "hidden": true,
+      "description": "clang 16 compiler",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "/usr/bin/clang",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
+      }
+    },
+    {
+      "name": "static",
+      "hidden": true,
+      "description": "static vcpkg build",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-linux"
+      }
+    },
+    {
+      "name": "x64-linux-gcc-static-release",
+      "displayName": "x64-linux-gcc-static-release",
+      "description": "gcc, static, release build",
+      "inherits": [
+        "x64-linux",
+        "gcc",
+        "static",
+        "release"
+      ]
+    },
+    {
+      "name": "x64-linux-gcc-static-debug",
+      "displayName": "x64-linux-gcc-static-debug",
+      "description": "gcc, static, debug build",
+      "inherits": [
+        "x64-linux",
+        "gcc",
+        "static",
+        "debug"
+      ]
+    },
+    {
+      "name": "x64-linux-clang-static",
+      "displayName": "x64-linux-clang-static",
+      "description": "clang, static, release build",
+      "inherits": [
+        "x64-linux",
+        "clang",
+        "static",
+        "release"
+      ]
+    },
+    {
+      "name": "x64-linux-clang-tidy",
+      "displayName": "x64-linux-clang-tidy",
+      "description": "Setup clang tooling for clang, static, release build",
+      "inherits": [
+        "x64-linux",
+        "clang",
+        "static",
+        "release"
+      ],
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "enable_clang_tidy": true,
+        "clang_tidy_config": "${sourceDir}/tools/clang/.clang-tidy"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "common",
+      "hidden": true,
+      "jobs": 16
+    },
+    {
+      "name": "x64-linux-gcc-static-release",
+      "inherits": "common",
+      "configurePreset": "x64-linux-gcc-static-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "x64-linux-gcc-static-debug",
+      "inherits": "common",
+      "configurePreset": "x64-linux-gcc-static-debug",
+      "configuration": "Debug"
+    }
+  ]
+}
