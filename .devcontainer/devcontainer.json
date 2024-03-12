@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
+  "name": "build-env",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "runArgs": [
+      "--pull=never"
+    ]
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "stkb.rewrap",
+        "timonwong.shellcheck",
+        "twxs.cmake",
+        "vscode.cpptools-extension-pack",
+        "xaver.clang-format"
+      ]
+    }
+  }
+}
