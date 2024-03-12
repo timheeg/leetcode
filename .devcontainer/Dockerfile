@@ -10,12 +10,15 @@ RUN subscription-manager register --org=$RHEL8_ORG --activationkey=$RHEL8_ACTIVA
 #
 # gcc-toolset-13 compiler
 # vim-enhanced for color vi support in git
+# zip/unzip for vcpkg
 #
 RUN dnf update -y \
   && dnf -y install \
   gcc-toolset-13 \
   git \
+  unzip \
   vim-enhanced \
+  zip \
   && dnf clean all \
   && rm -rf /var/cache/yum
 
@@ -24,6 +27,11 @@ WORKDIR /opt
 RUN curl --fail -LO https://github.com/Kitware/CMake/releases/download/v3.28.3/cmake-3.28.3-linux-x86_64.tar.gz \
   && tar -xvf cmake-3.28.3-linux-x86_64.tar.gz \
   && rm cmake-3.28.3-linux-x86_64.tar.gz
+
+# Clone & bootstrap vcpkg
+WORKDIR /
+RUN git clone https://github.com/microsoft/vcpkg.git \
+  && ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 
 # Install root user .bashrc
 COPY .bashrc /root/
