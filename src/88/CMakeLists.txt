@@ -7,6 +7,7 @@ target_include_directories(lc88
 )
 
 target_sources(lc88 PRIVATE
+  solution.cpp
   solution.h
 )
 
