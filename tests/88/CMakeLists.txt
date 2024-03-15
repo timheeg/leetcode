@@ -2,7 +2,7 @@ add_executable(lc88-test)
 
 target_sources(lc88-test
   PRIVATE
-    empty.test.cpp
+    leetcode.test.cpp
     main.cpp
 )
 
