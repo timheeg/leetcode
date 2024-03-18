@@ -4,6 +4,7 @@ target_sources(lc189-test
   PRIVATE
     leetcode.test.cpp
     main.cpp
+    more.test.cpp
 )
 
 target_link_libraries(lc189-test
