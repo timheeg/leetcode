@@ -10,6 +10,7 @@ target_sources(lc55 PRIVATE
   dead_recursion_dead.h
   debug.h
   loop.h
+  math_ish.h
   recursion.h
   recursion_dead.h
   solution.cpp
