@@ -65,7 +65,7 @@ TEST(LeetCodeTest, Case4) {
 // time_limit_exceeded::recursion : minutes before killed
 // time_limit_exceeded::recursion_dead : 1721ms
 // time_limit_exceeded::dead_recursion_dead : 1850ms
-// math_ish : 6ms
+// math_ish : 5ms
 //
 TEST(LeetCodeTest, Case5) {
   std::vector<int> nums = {
