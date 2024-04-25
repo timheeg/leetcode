@@ -11,6 +11,9 @@
       "--pull=never"
     ]
   },
+  "mounts": [
+    "source=build,target=${containerWorkspaceFolder}/build,type=volume"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
