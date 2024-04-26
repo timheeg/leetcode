@@ -1,0 +1,17 @@
+add_library(lc238)
+
+target_include_directories(lc238
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include>
+)
+
+target_sources(lc238 PRIVATE
+  solution.cpp
+  solution.h
+)
+
+# Link library dependencies
+target_link_libraries(lc238 PRIVATE
+  compiler_flags
+)
