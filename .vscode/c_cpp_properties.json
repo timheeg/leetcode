@@ -1,25 +1,48 @@
 {
   "env": {
-    "presetName": "x64-linux-gcc-static-debug"
+    "project_include_path": [
+      "${workspaceFolder}/src",
+      "${workspaceFolder}/tests",
+      "/usr/include"
+    ],
+    "browse_path": [
+      "${workspaceFolder}",
+      "/usr/include"
+    ]
   },
   "configurations": [
     {
-      "name": "build",
+      "name": "x64-linux-gcc-static-debug",
       "compilerPath": "/opt/rh/gcc-toolset-13/root/usr/bin/gcc",
       "intelliSenseMode": "linux-gcc-x64",
       "includePath": [
-        "${workspaceFolder}/src",
-        "${workspaceFolder}/tests",
-        "/usr/include"
+        "${project_include_path}"
       ],
       "cStandard": "gnu23",
       "cppStandard": "c++20",
       "configurationProvider": "ms-vscode.cmake-tools",
-      "compileCommands": "${workspaceFolder}/build/${presetName}/compile_commands.json",
+      "compileCommands": "${workspaceFolder}/build/x64-linux-gcc-static-debug/compile_commands.json",
       "browse": {
         "path": [
-          "${workspaceFolder}",
-          "/usr/include"
+          "${browse_path}"
+        ],
+        "limitSymbolsToIncludedHeaders": false
+      }
+    },
+    {
+      "name": "x64-linux-gcc-static-release",
+      "compilerPath": "/opt/rh/gcc-toolset-13/root/usr/bin/gcc",
+      "intelliSenseMode": "linux-gcc-x64",
+      "includePath": [
+        "${project_include_path}"
+      ],
+      "cStandard": "gnu23",
+      "cppStandard": "c++20",
+      "configurationProvider": "ms-vscode.cmake-tools",
+      "compileCommands": "${workspaceFolder}/build/x64-linux-gcc-static-release/compile_commands.json",
+      "browse": {
+        "path": [
+          "${browse_path}"
         ],
         "limitSymbolsToIncludedHeaders": false
       }
