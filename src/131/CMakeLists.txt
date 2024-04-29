@@ -8,6 +8,7 @@ target_include_directories(lc131
 
 target_sources(lc131 PRIVATE
   brute-force.cpp
+  skip-intermediates.cpp
   solution.cpp
   solution.h
 )
