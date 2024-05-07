@@ -17,7 +17,7 @@ using height_t = int;
 using index_t = std::vector<int>;
 
 namespace debug {
-bool enabled{true};
+bool enabled{false};
 
 void print(std::vector<int> list) {
   std::for_each(std::cbegin(list), std::cend(list),
@@ -36,7 +36,7 @@ void print(const std::map<height_t, index_t>& tree,
 }  // namespace debug
 
 namespace top_down {
-int trap(std::vector<int>& height) {
+[[maybe_unused]] int trap(std::vector<int>& height) {
   std::map<height_t, index_t> tree{};
   std::set<height_t> unique_heights{};
 
@@ -85,9 +85,52 @@ int trap(std::vector<int>& height) {
   return water;
 }
 }  // namespace top_down
+
+namespace breadth {
+[[maybe_unused]] int trap(std::vector<int>& height) {
+  std::vector<int> max_left(height.size());
+  auto max{0};
+  for (auto i = 0u; i < height.size(); ++i) {
+    if (i == 0) {
+      max_left[i] = 0;
+      max = height[i];
+      continue;
+    }
+    max_left[i] = max;
+    max = std::max(height[i], max);
+  }
+  if (debug::enabled) std::cout << "max_left: ";
+  if (debug::enabled) debug::print(max_left);
+
+  max = 0;
+  std::vector<int> max_right(height.size());
+  for (auto i = height.size(); i > 0; --i) {
+    if (i == height.size()) {
+      max_right[i - 1] = 0;
+      max = height[i - 1];
+      continue;
+    }
+    max_right[i - 1] = max;
+    max = std::max(height[i - 1], max);
+  }
+  if (debug::enabled) std::cout << "max_right: ";
+  if (debug::enabled) debug::print(max_right);
+
+  auto total_water{0};
+  for (auto i = 0u; i < height.size(); ++i) {
+    total_water += std::max(std::min(max_left[i], max_right[i]) - height[i], 0);
+  }
+
+  return total_water;
+}
+}  // namespace breadth
 }  // namespace
 
 int Solution::trap(std::vector<int>& height) {
+#if 0
   auto trap = top_down::trap;
+#else
+  auto trap = breadth::trap;
+#endif
   return trap(height);
 }
