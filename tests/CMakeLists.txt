@@ -4,6 +4,7 @@ find_package(GTest CONFIG REQUIRED)
 
 enable_testing()
 
+add_subdirectory(12)
 add_subdirectory(13)
 add_subdirectory(26)
 add_subdirectory(27)
