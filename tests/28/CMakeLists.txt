@@ -4,6 +4,7 @@ target_sources(lc28-test
   PRIVATE
     leetcode.test.cpp
     main.cpp
+    more.test.cpp
 )
 
 target_link_libraries(lc28-test
