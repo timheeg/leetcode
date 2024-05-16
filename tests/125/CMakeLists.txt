@@ -4,6 +4,7 @@ target_sources(lc125-test
   PRIVATE
     leetcode.test.cpp
     main.cpp
+    more.test.cpp
 )
 
 target_include_directories(lc125-test PRIVATE
