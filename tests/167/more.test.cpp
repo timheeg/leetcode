@@ -1,34 +1,13 @@
-#include <392/solution.h>
+#include <167/solution.h>
 #include <gtest/gtest.h>
 
 TEST(MoreTests, Empty) {
-  const std::string a{""};
-  const std::string b{""};
+  std::vector<int> numbers{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+                           2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4,
+                           4, 4, 4, 4, 4, 4, 5, 6, 6, 6, 6, 6};
+  auto target{11};
   Solution s{};
-  auto result = s.isSubsequence(a, b);
-  EXPECT_EQ(result, true);
-}
-
-TEST(MoreTests, ace) {
-  const std::string a{"ace"};
-  const std::string b{"abcde"};
-  Solution s{};
-  auto result = s.isSubsequence(a, b);
-  EXPECT_EQ(result, true);
-}
-
-TEST(MoreTests, aec) {
-  const std::string a{"aec"};
-  const std::string b{"abcde"};
-  Solution s{};
-  auto result = s.isSubsequence(a, b);
-  EXPECT_EQ(result, false);
-}
-
-TEST(MoreTests, Same) {
-  const std::string a{"abcdefghijklmnopqrstuvwxyz"};
-  const std::string b{"abcdefghijklmnopqrstuvwxyz"};
-  Solution s{};
-  auto result = s.isSubsequence(a, b);
-  EXPECT_EQ(result, true);
+  auto result = s.twoSum(numbers, target);
+  std::vector<int> expected{31, 32};
+  EXPECT_EQ(result, expected);
 }
