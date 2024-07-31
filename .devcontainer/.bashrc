@@ -17,14 +17,6 @@ alias ls='ls --color'
 # Enable gcc compiler
 source /opt/rh/gcc-toolset-13/enable
 
-# Add CMake to path
-CMAKE_HOME=/opt/cmake-3.28.3-linux-x86_64
-export PATH=$CMAKE_HOME/bin:$PATH
-
-# Add vcpkg to path
-VCPKG_ROOT=/vcpkg
-export PATH=$VCPKG_ROOT:$PATH
-
 #
 # Define git prompt and git completion
 #

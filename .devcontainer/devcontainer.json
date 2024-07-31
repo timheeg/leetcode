@@ -1,18 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
-  "name": "build-env",
+  "name": "build-gcc",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
+      "BASE_IMAGE_NAME": "registry.access.redhat.com/ubi8/ubi",
+      "BASE_IMAGE_TAG": "8.9-1136",
       "RHEL8_ORG": "${localEnv:RHEL8_ORG}",
-      "RHEL8_ACTIVATION_KEY": "${localEnv:RHEL8_ACTIVATION_KEY}"
+      "RHEL8_ACTIVATION_KEY": "${localEnv:RHEL8_ACTIVATION_KEY}",
+      "USERNAME": "${localEnv:USER}"
     },
     "runArgs": [
       "--pull=never"
     ]
   },
   "mounts": [
-    "source=build,target=${containerWorkspaceFolder}/build,type=volume"
+    // Copy build environment gitconfig into dev container.
+    // This comes from WSL config containing common settings and user config.
+    "source=/etc/gitconfig,target=/etc/gitconfig,type=bind"
   ],
   "customizations": {
     "vscode": {
