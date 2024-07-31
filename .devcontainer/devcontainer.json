@@ -6,10 +6,12 @@
     "args": {
       "BASE_IMAGE_NAME": "registry.access.redhat.com/ubi8/ubi",
       "BASE_IMAGE_TAG": "8.9-1136",
-      "RHEL8_ORG": "${localEnv:RHEL8_ORG}",
-      "RHEL8_ACTIVATION_KEY": "${localEnv:RHEL8_ACTIVATION_KEY}",
       "USERNAME": "${localEnv:USER}"
     },
+    "options": [
+      "--secret=id=RHEL8_ORG",
+      "--secret=id=RHEL8_ACTIVATION_KEY"
+    ],
     "runArgs": [
       "--pull=never"
     ]
