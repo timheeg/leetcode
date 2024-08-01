@@ -14,8 +14,8 @@ target_compile_options(compiler_flags INTERFACE
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 
-# All users of this library will need at least C++20
-target_compile_features(compiler_flags INTERFACE cxx_std_20)
+# All users of this library will need at least C++23
+target_compile_features(compiler_flags INTERFACE cxx_std_23)
 
 # Use std not gnu extensions
 set_target_properties(compiler_flags PROPERTIES CXX_EXTENSIONS OFF)
