@@ -8,6 +8,6 @@ TEST(MoreTests, Empty) {
   auto target{11};
   Solution s{};
   auto result = s.twoSum(numbers, target);
-  std::vector<int> expected{31, 32};
+  std::vector<int> expected{31, 36};
   EXPECT_EQ(result, expected);
 }

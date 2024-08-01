@@ -3,52 +3,27 @@
 #include <cassert>
 #include <iostream>
 
+//
+// Intuition:
+// The smallest number is numbers[1] + numbers[2].
+// The largest number is numbers[n-1] + numbers[n].
+// So numbers[1] + numbers[n] is the midpoint.
+// If the target is less, decrease the large number to numbers[n-1].
+// If the target is more, increase the small number to numbers[2].
+//
+
 std::vector<int> Solution::twoSum(std::vector<int>& numbers, int target) {
-  assert(numbers.size() > 1);
-  std::cout << "target: " << target << "\n";
-  auto walk_back{false};
-  auto i = 0, j = 1;
-  while (j < static_cast<int>(numbers.size())) {
-    std::cout << "n[" << i << "]: " << numbers[i] << ", ";
-    std::cout << "n[" << j << "]: " << numbers[j] << "\n";
-    if (numbers[i] + numbers[j] == target) return {i + 1, j + 1};
+  auto i = 0ul, j = std::size(numbers) - 1;
+  while (i < j) {
     if (numbers[i] + numbers[j] < target) {
-      std::cout << "less than target\n";
-      if (not walk_back) {
-        std::cout << "not walk back ";
-        if (j == static_cast<int>(numbers.size()) - 1) {
-          walk_back = true;
-          std::cout << "walk back ";
-          for (++i; numbers[i] == numbers[i - 1]; ++i)
-            ;
-          std::cout << "i: " << i << "\n";
-        } else {
-          for (++j; j < static_cast<int>(numbers.size()) - 1 &&
-                    numbers[j] == numbers[j - 1];
-               ++j)
-            ;
-          std::cout << "j: " << j << "\n";
-        }
-      } else {
-        std::cout << "walk back ";
-        while (numbers[i] == numbers[i - 1]) ++i;
-        std::cout << "i: " << i << "\n";
-      }
-    } else {  // total > target
-      std::cout << "greater than target\n";
-      if (walk_back) {
-        std::cout << "walk back ";
-        while (numbers[j] == numbers[j + 1]) --j;
-        std::cout << "j: " << j << "\n";
-      } else {
-        std::cout << "not walk back, set walk back ";
-        walk_back = true;
-        while (numbers[j] == numbers[j + 1]) --j;
-        while (numbers[i] == numbers[i - 1]) ++i;
-        std::cout << "i: " << i << ", ";
-        std::cout << "j: " << j << "\n";
-      }
+      ++i;
+      continue;
     }
+    if (numbers[i] + numbers[j] > target) {
+      --j;
+      continue;
+    }
+    return {static_cast<int>(i) + 1, static_cast<int>(j) + 1};
   }
-  return {i + 1, j + 1};
+  return {};
 }
