@@ -2,7 +2,7 @@ add_library(lc13)
 
 target_include_directories(lc13
   PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     $<INSTALL_INTERFACE:include>
 )
 

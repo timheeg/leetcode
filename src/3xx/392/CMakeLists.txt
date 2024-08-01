@@ -2,7 +2,7 @@ add_library(lc392)
 
 target_include_directories(lc392
   PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     $<INSTALL_INTERFACE:include>
 )
 

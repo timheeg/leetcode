@@ -2,7 +2,7 @@ add_library(lc383)
 
 target_include_directories(lc383
   PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     $<INSTALL_INTERFACE:include>
 )
 
