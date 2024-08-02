@@ -9105,5 +9105,13 @@ TEST(MoreTest, Case2_TimeLimitExceeded) {
       8683, 6759,  3936,  1998,  9991, 7012, 2605, 3802,  7767, 4430};
   Solution sl{};
   auto result = sl.minSubArrayLen(target, nums);
-  EXPECT_EQ(result, 1);
+  EXPECT_EQ(result, 79517);
+}
+
+TEST(MoreTest, Case3) {
+  auto target{7};
+  std::vector<int> nums{5};
+  Solution sl{};
+  auto result = sl.minSubArrayLen(target, nums);
+  EXPECT_EQ(result, 0);
 }

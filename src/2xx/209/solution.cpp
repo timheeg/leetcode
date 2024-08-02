@@ -31,8 +31,38 @@ int use_slides(int target, std::vector<int>& nums) {
   return 0;
 }
 
+//
+// After reading more about sliding window algorithm and understanding the
+// impact of the minimal requirement, it makes sense to vary the window
+// dynamically to search the window space instead of calculating all windows.
+// e.g., https://builtin.com/data-science/sliding-window-algorithm
+//
+int use_SWA(int target, std::vector<int>& nums) {
+  if (target == 0 || nums.empty()) return 0;
+  if (std::size(nums) == 1) return nums[0] >= target ? 1 : 0;
+
+  auto windowSum{0};
+  auto minWindowSize{std::numeric_limits<ulong>::max()};
+  auto start{0ul};
+
+  for (auto end : std::ranges::views::iota(0ul, std::size(nums))) {
+    windowSum += nums[end];
+
+    while (windowSum >= target) {
+      minWindowSize = std::min(minWindowSize, end - start + 1ul);
+      if (minWindowSize == 1) return minWindowSize;  // short-circuit
+      windowSum -= nums[start];
+      start++;
+    }
+  }
+  if (minWindowSize == std::numeric_limits<ulong>::max()) return 0;
+  return minWindowSize;
+}
+
 int Solution::minSubArrayLen(int target, std::vector<int>& nums) {
-#if 1
+#if 0
   return use_slides(target, nums);
+#else
+  return use_SWA(target, nums);
 #endif
 }
