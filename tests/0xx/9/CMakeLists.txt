@@ -1,17 +1,9 @@
-add_executable(lc9-test)
-
-target_sources(lc9-test
-  PRIVATE
-    leetcode.test.cpp
-    main.cpp
-)
-
-target_link_libraries(lc9-test
-  PRIVATE
-    compiler_flags
-    GTest::gtest
-    GTest::gtest_main
-    lc9
-)
-
-gtest_discover_tests(lc9-test)
+add_subdirectory(55)
+add_subdirectory(56)
+add_subdirectory(58)
+add_subdirectory(68)
+add_subdirectory(70)
+add_subdirectory(71)
+add_subdirectory(80)
+add_subdirectory(88)
+add_subdirectory(92)

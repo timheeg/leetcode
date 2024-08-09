@@ -1,17 +1,9 @@
-add_library(lc9)
-
-target_include_directories(lc9
-  PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-    $<INSTALL_INTERFACE:include>
-)
-
-target_sources(lc9 PRIVATE
-  solution.cpp
-  solution.h
-)
-
-# Link library dependencies
-target_link_libraries(lc9 PRIVATE
-  compiler_flags
-)
+add_subdirectory(55)
+add_subdirectory(56)
+add_subdirectory(58)
+add_subdirectory(68)
+add_subdirectory(70)
+add_subdirectory(71)
+add_subdirectory(80)
+add_subdirectory(88)
+add_subdirectory(92)
